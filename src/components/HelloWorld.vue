@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     <div>Shota参上</div>
+    <div>石塚大也参上</div>
     <h1>{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
