@@ -5,6 +5,7 @@
     </div>
     <router-view /> -->
     <Checker />
+    <router-view />
   </div>
 </template>
 <script>
