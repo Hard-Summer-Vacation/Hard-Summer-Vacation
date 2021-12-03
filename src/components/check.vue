@@ -1,17 +1,20 @@
 <template>
   <div>
-    <h1>サブスク</h1>
-    <button v-on:click="clickstart">診断開始</button>
+    <div class="p-start">
+      <h1>subscription<br />checker</h1>
+      <p>あなたに合うサブスクはどれ？</p>
+      <button v-on:click="clickStart">診断をはじめる</button>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  data: function () {
-    return {}
-  },
   methods: {
-    clickstart() {},
+    //スタートを押したら質問画面へ移動
+    clickStart() {
+      this.$router.push({ name: "Question" })
+    },
   },
 }
 </script>
