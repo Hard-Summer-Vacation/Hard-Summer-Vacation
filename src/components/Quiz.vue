@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <h1>好きなジャンルは何ですか？</h1>
     <button v-on:click="choice1">アニメ</button>
@@ -27,4 +27,4 @@ export default {
 }
 </script>
 
-<style></style>
+<style></style> -->
