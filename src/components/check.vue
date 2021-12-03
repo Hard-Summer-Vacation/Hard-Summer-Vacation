@@ -10,16 +10,12 @@
 
 <script>
 export default {
-  data: function () {
-    return {}
-  },
   methods: {
     //スタートを押したら質問画面へ移動
     clickStart() {
       this.$router.push({ name: "Question" })
     },
   },
-  computed: {},
 }
 </script>
 

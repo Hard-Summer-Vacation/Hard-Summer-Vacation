@@ -161,11 +161,3 @@ export default {
 </script>
 
 <style></style>
-
-// new Vue({ // el: "#app", // data: { // currentPage: "start", // score: [], //
-isShare: false, // twitterUrl: "", // fbUrl: "" // }, // computed: {}, //
-methods: { // //スタートで質問画面へ // moveCheck() { // this.currentPage =
-"checklist"; // }, // //質問画面からscore貰って結果画面へ // moveResult(score) {
-// this.score = score; // this.currentPage = "result"; // this.isShare = true;
-// }, // //リトライでスタート画面へ // moveStart() { // this.currentPage =
-"start"; // this.isShare = false; // },
