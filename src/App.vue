@@ -4,16 +4,16 @@
       <router-link to="/checker">Checker</router-link>
     </div>
     <router-view /> -->
-    <Checker />
+    <check />
     <router-view />
   </div>
 </template>
 <script>
-import Checker from "./views/Checker.vue"
+import check from "@/components/check.vue"
 
 export default {
   components: {
-    Checker,
+    check,
   },
 }
 </script>
