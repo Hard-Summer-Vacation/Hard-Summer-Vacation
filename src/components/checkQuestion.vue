@@ -2,16 +2,15 @@
   <div>
     <transition-group appear mode="in-out" name="question" tag="ul"
       ><li v-for="question in filteredItems" v-bind:key="question.id">
-        <h1>Q{{ question.id }}.</h1>
+        <h1>Q{{ question.id }}</h1>
         <div>
           <p v-html="question.text"></p>
         </div>
       </li>
     </transition-group>
     <div>
-      <button v-on:click="addPoint(5)">いつも<br />そうだ</button>
-      <button v-on:click="addPoint(3)">時々<br />そうだ</button>
-      <button v-on:click="addPoint(1)">めったに<br />ない</button>
+      <button v-on:click="addPoint()">はい</button>
+      <button v-on:click="nonPoint()">いいえ</button>
     </div>
   </div>
 </template>
@@ -21,86 +20,64 @@ export default {
   data: function () {
     return {
       currentQuestion: 1,
-      score: [
-        { type: "visual", val: 0 },
-        { type: "auditory", val: 0 },
-        { type: "tactile", val: 0 },
-      ],
+      score: 0,
       questions: [
         {
           id: 1,
-          text: "講義を聴くより教科書を読む方を好む",
+          text: "アニメよりも映画の方が好きだ",
         },
         {
           id: 2,
-          text: "フラッシュカードを使うと覚えやすい",
+          text: "邦画より洋画の方がすきだ",
         },
-        { id: 3, text: "クロスワードパズルが好きだ" },
+        { id: 3, text: "日本のドラマより海外ドラマが好きだ" },
         {
           id: 4,
-          text: "勉強するときは書きとめたり<br>ノートを取ることを好む",
+          text: "アーティストのLIVE・ドキュメンタリーが観たい",
         },
         {
           id: 5,
-          text: "地図を読んで目的地に行くのは得意だ",
+          text: " アクション映画作品が好き",
         },
-        { id: 6, text: "新しい情報は読んで得る事を好む" },
+        { id: 6, text: "有名な作品が見たい" },
         {
           id: 7,
-          text: "何かを覚えようとするときに<br>頭の中に図や絵を描くのが好きだ",
+          text: "皆が見ているものは自分も見てみたいと良く思う方だ",
         },
-        { id: 8, text: "表やグラフを作るのは楽しい" },
+        { id: 8, text: "派手な演出は好きだ　" },
         {
           id: 9,
-          text: "情報を理解するために<br>声に出して読むことがある",
+          text: "映画は1人で見ることが多い",
         },
         {
           id: 10,
-          text: "表やグラフは誰かに説明して貰う必要がある",
+          text: "最近ワクワクが足りないと感じる",
         },
         {
           id: 11,
-          text: "ニュースは新聞を読むより<br>ラジオで聞く方が好きだ",
+          text: "何事にもスリルがあった方が気持ちが盛り上がる方だ",
         },
         {
           id: 12,
-          text: "数学などの公式は書いて覚えるより<br>唱えて覚える方が好きだ",
+          text: "自分がしたいことがすぐにわかる方だ",
         },
         {
           id: 13,
-          text: "道案内は書かれたものより<br>音声で聞くほうを好む",
+          text: "正直、難しい話は苦手だ",
         },
         {
           id: 14,
-          text: "物語は読むより朗読を聞く方を好む",
+          text: "新しい物を体験するのが好きだ",
         },
-        { id: 15, text: "電話番号は何回か唱えて覚える" },
+        { id: 15, text: "値段より質を重視する方だ" },
         {
           id: 16,
-          text: "何かを学ぶなら本より講義や音声教材が良い",
+          text: "怖い映画を見ると寝られなくなることがある",
         },
-        { id: 17, text: "体験型のアクティビティは楽しい" },
+        { id: 17, text: "長時間視聴することができない" },
         {
           id: 18,
-          text: "鍵やコイン、ペンなどを手で触って遊ぶ",
-        },
-        { id: 19, text: "実際に体験して学ぶことが好きだ" },
-        { id: 20, text: "体を使って何かを学ぶ方を好む" },
-        {
-          id: 21,
-          text: "勉強するときにガムを噛んだり<br>何かを食べながらする",
-        },
-        {
-          id: 22,
-          text: "誰かとひっついたり<br>何かを触ったりすると落ち着く",
-        },
-        {
-          id: 23,
-          text: "何かを覚えるときは何度か書いて覚える",
-        },
-        {
-          id: 24,
-          text: "講義より実験の方がたくさんのことを学べる",
+          text: "恋愛物の作品にはあまり興味がわかない",
         },
       ],
     }
@@ -121,24 +98,38 @@ export default {
     //点数加算
     //1問目でリトライ時の値をリセット
     //24問目で結果画面へ遷移
-    addPoint(point) {
+    addPoint() {
+      this.score += 1
       if (this.currentQuestion === 1) {
-        this.score[0].val = 0
-        this.score[1].val = 0
-        this.score[2].val = 0
-        this.score[0].val += point
         this.currentQuestion++
-      } else if (this.currentQuestion <= 8) {
-        this.score[0].val += point
+      } else if (this.currentQuestion <= 5) {
         this.currentQuestion++
-      } else if (this.currentQuestion <= 16) {
-        this.score[1].val += point
+      } else if (this.currentQuestion <= 11) {
         this.currentQuestion++
-      } else if (this.currentQuestion <= 23) {
-        this.score[2].val += point
+      } else if (this.currentQuestion <= 15) {
         this.currentQuestion++
-      } else if (this.currentQuestion === 24) {
-        this.score[2].val += point
+      } else if (this.currentQuestion <= 17) {
+        this.currentQuestion++
+      } else if (this.currentQuestion === 18) {
+        //親にscoreを渡す
+        this.$emit("finish-check", this.score)
+        this.$router.push({ name: "Result" })
+        console.log(this.score)
+      }
+    },
+    nonPoint() {
+      this.score += 0
+      if (this.currentQuestion === 1) {
+        this.currentQuestion++
+      } else if (this.currentQuestion <= 5) {
+        this.currentQuestion++
+      } else if (this.currentQuestion <= 11) {
+        this.currentQuestion++
+      } else if (this.currentQuestion <= 15) {
+        this.currentQuestion++
+      } else if (this.currentQuestion <= 17) {
+        this.currentQuestion++
+      } else if (this.currentQuestion === 18) {
         //親にscoreを渡す
         this.$emit("finish-check", this.score)
         this.$router.push({ name: "Result" })
