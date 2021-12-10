@@ -10,6 +10,8 @@
         <p>{{ result.text }}</p>
       </div>
     </div>
+    <!--v-bind:score="score"を使って親のスコアを送る-->
+    <div v-bind:score="score"></div>
     <div>
       <button v-on:click="clickRetry">最初からやり直す</button>
     </div>
@@ -20,7 +22,7 @@
 export default {
   data: function () {
     return {
-      selectedType:"a",
+      selectedType: "a",
       shareResult: "",
       results: [
         {
@@ -47,7 +49,7 @@ export default {
     }
   },
   props: {
-    score:Array,
+    score: Array,
   },
   computed: {
     //当てはまる結果を表示
@@ -58,10 +60,9 @@ export default {
   methods: {
     //当てはまる結果のみを抽出
     searchResult(list, key) {
-    return list.filter(function (result) {
-      return result.id === key
+      return list.filter(function (result) {
+        return result.id === key
       })
-      
     },
     //リトライボタンでスタート画面へ
     clickRetry() {
@@ -69,6 +70,7 @@ export default {
     },
   },
   created() {
+    console.log(this.score)
     if (this.score <= 5) {
       this.selectedType = "a"
     } else if (this.score <= 11) {
