@@ -2,16 +2,15 @@
   <div>
     <transition-group appear mode="in-out" name="question" tag="ul"
       ><li v-for="question in filteredItems" v-bind:key="question.id">
-        <h1>Q{{ question.id }}.</h1>
+        <h1>Q{{ question.id }}</h1>
         <div>
           <p v-html="question.text"></p>
         </div>
       </li>
     </transition-group>
     <div>
-      <button v-on:click="addPoint(5)">あてはまる</button>
-      <button v-on:click="addPoint(3)">どちらともいえない</button>
-      <button v-on:click="addPoint(1)">あてはまらない</button>
+      <button v-on:click="addPoint()">はい</button>
+      <button v-on:click="nonPoint()">いいえ</button>
     </div>
   </div>
 </template>
@@ -21,11 +20,7 @@ export default {
   data: function () {
     return {
       currentQuestion: 1,
-      score: [
-        { type: "visual", val: 0 },
-        { type: "auditory", val: 0 },
-        { type: "tactile", val: 0 },
-      ],
+      score: 0,
       questions: [
         {
           id: 1,
@@ -33,58 +28,57 @@ export default {
         },
         {
           id: 2,
-          text: "邦画よりも洋画の方が好きだ",
+          text: "邦画より洋画の方がすきだ",
         },
-        { id: 3, text: "日本のドラマより海外のドラマが好きだ" },
+        { id: 3, text: "日本のドラマより海外ドラマが好きだ" },
         {
           id: 4,
-          text: "ドキュメンタリーに興味がある",
+          text: "アーティストのLIVE・ドキュメンタリーが観たい",
         },
         {
           id: 5,
-          text: "皆が見ているものは<br>自分も見てみたいと思う",
+          text: " アクション映画作品が好き",
         },
-        { id: 6, text: "派手な演出は好きだ" },
+        { id: 6, text: "有名な作品が見たい" },
         {
           id: 7,
-          text: "映画は1人で<br>見ることが多い",
+          text: "皆が見ているものは自分も見てみたいと良く思う方だ",
         },
-        { id: 8, text: "最近ワクワクが足りないと感じる" },
+        { id: 8, text: "派手な演出は好きだ　" },
         {
           id: 9,
-          text: "何事にもスリルがあった方が<br>気持ちが盛り上がる方だ",
+          text: "映画は1人で見ることが多い",
         },
         {
           id: 10,
-          text: "自分がしたいことがすぐに分かる方だ",
+          text: "最近ワクワクが足りないと感じる",
         },
         {
           id: 11,
-          text: "正直、難しい話は苦手だ",
+          text: "何事にもスリルがあった方が気持ちが盛り上がる方だ",
         },
         {
           id: 12,
-          text: "新しいものを体験するのが好きだ",
+          text: "自分がしたいことがすぐにわかる方だ",
         },
         {
           id: 13,
-          text: "新しいものを体験するのが好きだ",
+          text: "正直、難しい話は苦手だ",
         },
         {
           id: 14,
-          text: "値段より質を重視する方だ",
+          text: "新しい物を体験するのが好きだ",
         },
-        { id: 15, text: "怖い映画を見ると寝られなくなることがある" },
+        { id: 15, text: "値段より質を重視する方だ" },
         {
           id: 16,
-          text: "長時間同じものを視聴することができない",
+          text: "怖い映画を見ると寝られなくなることがある",
         },
-        { id: 17, text: "恋愛物の作品にはあまり興味がわかない" },
+        { id: 17, text: "長時間視聴することができない" },
         {
           id: 18,
-          text: "ドキュメンタリーを見てみたいと思う",
+          text: "恋愛物の作品にはあまり興味がわかない",
         },
-        { id: 19, text: "実際に体験して学ぶことが好きだ" },
       ],
     }
   },
@@ -104,24 +98,38 @@ export default {
     //点数加算
     //1問目でリトライ時の値をリセット
     //24問目で結果画面へ遷移
-    addPoint(point) {
+    addPoint() {
+      this.score += 1
       if (this.currentQuestion === 1) {
-        this.score[0].val = 0
-        this.score[1].val = 0
-        this.score[2].val = 0
-        this.score[0].val += point
         this.currentQuestion++
-      } else if (this.currentQuestion <= 8) {
-        this.score[0].val += point
+      } else if (this.currentQuestion <= 5) {
         this.currentQuestion++
-      } else if (this.currentQuestion <= 16) {
-        this.score[1].val += point
+      } else if (this.currentQuestion <= 11) {
         this.currentQuestion++
-      } else if (this.currentQuestion <= 23) {
-        this.score[2].val += point
+      } else if (this.currentQuestion <= 15) {
         this.currentQuestion++
-      } else if (this.currentQuestion === 24) {
-        this.score[2].val += point
+      } else if (this.currentQuestion <= 17) {
+        this.currentQuestion++
+      } else if (this.currentQuestion === 18) {
+        //親にscoreを渡す
+        this.$emit("finish-check", this.score)
+        this.$router.push({ name: "Result" })
+        console.log(this.score)
+      }
+    },
+    nonPoint() {
+      this.score += 0
+      if (this.currentQuestion === 1) {
+        this.currentQuestion++
+      } else if (this.currentQuestion <= 5) {
+        this.currentQuestion++
+      } else if (this.currentQuestion <= 11) {
+        this.currentQuestion++
+      } else if (this.currentQuestion <= 15) {
+        this.currentQuestion++
+      } else if (this.currentQuestion <= 17) {
+        this.currentQuestion++
+      } else if (this.currentQuestion === 18) {
         //親にscoreを渡す
         this.$emit("finish-check", this.score)
         this.$router.push({ name: "Result" })
