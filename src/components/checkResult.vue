@@ -10,8 +10,8 @@
         <p>{{ result.text }}</p>
       </div>
     </div>
-    <div>
-      <button v-on:click="clickRetry">最初からやり直す</button>
+    <div class="btn form__buttons">
+      <a v-on:click="clickRetry">最初からやり直す</a>
     </div>
   </div>
 </template>
@@ -20,7 +20,7 @@
 export default {
   data: function () {
     return {
-      selectedType:"a",
+      selectedType: "a",
       shareResult: "",
       results: [
         {
@@ -47,7 +47,7 @@ export default {
     }
   },
   props: {
-    score:Array,
+    score: Array,
   },
   computed: {
     //当てはまる結果を表示
@@ -58,10 +58,9 @@ export default {
   methods: {
     //当てはまる結果のみを抽出
     searchResult(list, key) {
-    return list.filter(function (result) {
-      return result.id === key
+      return list.filter(function (result) {
+        return result.id === key
       })
-      
     },
     //リトライボタンでスタート画面へ
     clickRetry() {
@@ -84,4 +83,41 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+/*.form__buttons {
+  display: flex;
+  justify-content: flex-end;
+}*/
+.btn,
+a.btn,
+button.btn {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: white;
+  border-radius: 0.5rem;
+}
+
+.form__buttons {
+  color: #fff;
+  background-color: #0abab5;
+}
+.form__buttons {
+  color: #fff;
+  background: #0abab5;
+}
+</style>

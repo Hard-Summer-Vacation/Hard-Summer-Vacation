@@ -1,9 +1,15 @@
 <template>
   <div>
-    <div class="p-start">
-      <h1>subscription<br />checker</h1>
-      <p>あなたに合うサブスクはどれ？</p>
-      <button v-on:click="clickStart">診断をはじめる</button>
+    <div class="nav__bar">
+      <div class="p-start">
+        <router-link to="/" class="nav__logo nav__link"
+          >SUBSCHECKER</router-link
+        >
+        <h1>あなたに合うサブスクはどれ？</h1>
+        <button v-on:click="clickStart" class="btn form__buttons">
+          診断をはじめる
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -19,4 +25,35 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.nav__bar {
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  background-color: #0abab5;
+}
+
+.nav__link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #eee;
+  text-decoration: none;
+  font-size: 30px;
+}
+
+.nav__link:visited {
+  color: #eee;
+}
+
+.nav__link:hover {
+  font-weight: bold;
+  color: #fff;
+}
+
+.nav__logo {
+  width: 220px;
+}
+</style>
