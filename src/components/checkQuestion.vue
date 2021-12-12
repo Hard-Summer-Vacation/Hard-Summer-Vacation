@@ -1,12 +1,12 @@
 <template>
   <div>
     <transition-group appear mode="in-out" name="question" tag="ul"
-      ><li v-for="question in filteredItems" v-bind:key="question.id">
+      ><div v-for="question in filteredItems" v-bind:key="question.id">
         <h1>Q{{ question.id }}</h1>
         <div>
           <p v-html="question.text" class="question__text"></p>
         </div>
-      </li>
+      </div>
     </transition-group>
     <div>
       <a v-on:click="addPoint()" class="btn form__buttons">YES</a>

@@ -2,23 +2,37 @@
   <div>
     <div class="nav__bar">
       <div class="p-start">
-        <router-link to="/" class="nav__logo nav__link"
+        <router-link
+          v-on:click.native="startshow"
+          to="/"
+          class="nav__logo nav__link"
           >SUBSCHECKER</router-link
         >
-        <h1>あなたに合うサブスクはどれ？</h1>
-        <button v-on:click="clickStart" class="btn form__buttons">
-          診断をはじめる
-        </button>
       </div>
+    </div>
+    <div class="start" v-if="show">
+      <h1>あなたに合うサブスクはどれ？</h1>
+      <a v-on:click="clickStart" class="btn form__buttons"> 診断をはじめる </a>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      show: true,
+    }
+  },
+
   methods: {
+    startshow() {
+      this.show = true
+    },
+
     //スタートを押したら質問画面へ移動
     clickStart() {
+      this.show = false
       this.$router.push({ name: "Question" })
     },
   },
