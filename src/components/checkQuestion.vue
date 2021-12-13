@@ -1,16 +1,16 @@
 <template>
   <div>
     <transition-group appear mode="in-out" name="question" tag="ul"
-      ><li v-for="question in filteredItems" v-bind:key="question.id">
+      ><div v-for="question in filteredItems" v-bind:key="question.id">
         <h1>Q{{ question.id }}</h1>
         <div>
-          <p v-html="question.text"></p>
+          <p v-html="question.text" class="question__text"></p>
         </div>
-      </li>
+      </div>
     </transition-group>
     <div>
-      <button v-on:click="addPoint()">はい</button>
-      <button v-on:click="nonPoint()">いいえ</button>
+      <a v-on:click="addPoint()" class="btn form__buttons">YES</a>
+      <a v-on:click="nonPoint()" class="btn form__buttons">NO</a>
     </div>
   </div>
 </template>
@@ -142,4 +142,48 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.question__text {
+  font-size: 50px;
+  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans", Meiryo, sans-serif;
+}
+
+.btn,
+a.btn,
+button.btn {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-right: 10px;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: white;
+  border-radius: 0.5rem;
+}
+
+.form__buttons {
+  color: #fff;
+  background-color: #0abab5;
+}
+.form__buttons {
+  color: #fff;
+  background: #0abab5;
+}
+.form__buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+</style>
