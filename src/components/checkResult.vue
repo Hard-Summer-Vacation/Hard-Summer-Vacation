@@ -1,4 +1,3 @@
-//result画面
 <template>
   <div>
     <div>
@@ -20,7 +19,7 @@
 export default {
   data: function () {
     return {
-      selectedType: "a",
+      selectedType: "d",
       shareResult: "",
       results: [
         {
@@ -68,6 +67,7 @@ export default {
     },
   },
   created() {
+    console.log(this.score)
     if (this.score <= 5) {
       this.selectedType = "a"
     } else if (this.score <= 11) {

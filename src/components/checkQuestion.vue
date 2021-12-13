@@ -102,14 +102,17 @@ export default {
       this.score += 1
       if (this.currentQuestion === 1) {
         this.currentQuestion++
-      } else if (this.currentQuestion <= 5) {
-        this.currentQuestion++
-      } else if (this.currentQuestion <= 11) {
-        this.currentQuestion++
-      } else if (this.currentQuestion <= 15) {
-        this.currentQuestion++
       } else if (this.currentQuestion <= 17) {
         this.currentQuestion++
+        // } else if (this.currentQuestion <= 11) {
+        //   this.score[0].val += point;
+        //   this.currentQuestion++
+        // } else if (this.currentQuestion <= 15) {
+        //   this.score[0].val += point;
+        //   this.currentQuestion++
+        // } else if (this.currentQuestion <= 17) {
+        //   this.score[0].val += point;
+        //   this.currentQuestion++
       } else if (this.currentQuestion === 18) {
         //親にscoreを渡す
         this.$emit("finish-check", this.score)
