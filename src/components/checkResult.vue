@@ -1,4 +1,3 @@
-//result画面
 <template>
   <div>
     <div>
@@ -22,7 +21,7 @@
 export default {
   data: function () {
     return {
-      selectedType: "a",
+      selectedType: "",
       shareResult: "",
       results: [
         {
